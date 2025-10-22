@@ -1,8 +1,6 @@
-// src/controllers/ProdutoController.js
 const { Produto, Categoria } = require('../database').models;
 
 module.exports = {
-  // GET /api/produtos (Consulta todos os produtos)
   async index(req, res) {
     try {
       const produtos = await Produto.findAll({
@@ -14,7 +12,6 @@ module.exports = {
     }
   },
 
-  // POST /api/admin/produtos (Criação - Admin)
   async store(req, res) {
     const { nome, preco, quantidade, categoria_id } = req.body;
 

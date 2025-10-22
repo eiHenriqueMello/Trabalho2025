@@ -1,8 +1,7 @@
-// src/controllers/PedidoController.js
+
 const { Pedido, Cliente, PedidoProduto, Produto } = require('../database').models;
 
 module.exports = {
-  // POST /api/pedidos (Realização de Pedido)
   async store(req, res) {
     const { cliente_id, endereco, itens } = req.body; 
 
@@ -34,7 +33,6 @@ module.exports = {
             preco: produto.preco
         });
         
-        // Atualiza o estoque
         produto.quantidade -= item.quantidade;
         await produto.save();
       }
@@ -46,7 +44,6 @@ module.exports = {
     }
   },
   
-  // GET /api/pedidos (Lista pedidos do cliente)
   async index(req, res) {
       const { cliente_id } = req.query; 
       
@@ -77,7 +74,6 @@ module.exports = {
       }
   },
   
-  // GET /api/admin/pedidos (Lista todos os pedidos - Admin)
   async indexAll(req, res) {
       try {
           const pedidos = await Pedido.findAll({
